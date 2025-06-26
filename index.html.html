@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan Tindak Lanjut Temuan Hasil Pemeriksaan BPK-RI Kabupaten Mamuju Tengah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Keyframes for subtle background animation */
+        @keyframes subtleGradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0C0C2C; /* Warna latar belakang gelap asli */
+            color: #E0E0E0; /* Light text color for readability */
+            overflow-x: hidden; /* Prevent horizontal scroll on some effects */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: none; /* Menghapus animasi gradient */
+        }
+
+        .gradient-shape {
+            display: none;
+        }
+
+        .nav-link {
+            transition: all 0.4s ease-in-out; /* Smoother transition */
+            color: #C0C0C0; /* Lighter gray for default nav links */
+            position: relative;
+            overflow: hidden; /* For pseudo-element effects */
+        }
+        .nav-link::before { /* Underline/glow effect */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FF4500); /* Gold to OrangeRed glow */
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link.active {
+            background: linear-gradient(90deg, #4A008A, #000080); /* Deep Purple to Deep Blue for active nav link */
+            color: white; /* White text for contrast on active background */
+            font-weight: bold;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
+            transform: translateY(-2px); /* Slight lift */
+        }
+        .nav-link.active::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link:hover {
+            transform: scale(1.03) translateY(-1px); /* Slightly less aggressive scale up on hover */
+            background: linear-gradient(90deg, #6A00A0, #0000CD); /* Slightly brighter Purple to Blue on hover */
+            color: white; /* Ensure text remains white on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* Stronger shadow on hover */
+        }
+        .nav-link:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .feature-card {
+            transition: all 0.4s ease-in-out; /* Smoother transition */
+            border: 1px solid rgba(255, 215, 0, 0.2); /* Subtle gold border */
+            background-color: rgba(255, 255, 255, 0.03); /* Very subtle transparent background */
+        }
+        .feature-card:hover {
+            transform: scale(1.05) translateY(-5px); /* More pronounced lift on hover */
+            background: linear-gradient(45deg, rgba(106, 0, 160, 0.3), rgba(0, 0, 205, 0.3)); /* Brighter Purple to Blue with opacity on hover */
+            border-color: #FFD700; /* Gold border on hover */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
+        }
+
+        .service-button {
+            transition: all 0.4s ease-in-out; /* Smoother transition */
+            background: linear-gradient(90deg, #FFD700, #FF4500); /* Default Gold to OrangeRed */
+            color: white; /* White text for contrast */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow */
+            border: none; /* Remove default button border */
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .service-button::before { /* Hover glow effect */
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease-out;
+            z-index: -1;
+        }
+        .service-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .service-button:hover {
+            transform: translateY(-3px) scale(1.03); /* More pronounced lift and scale */
+            background: linear-gradient(90deg, #FFA500, #DC143C); /* Orange to Crimson on hover */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .form-section {
+            display: none; /* Hidden by default */
+        }
+        .message-box {
+            background-color: #333344;
+            color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none; /* Hidden by default */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-gradient-bg {
+            background: linear-gradient(135deg, rgba(42, 10, 74, 0.3), rgba(10, 10, 106, 0.3)); /* Slightly stronger opacity */
+            backdrop-filter: blur(8px); /* More pronounced blur for frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+        }
+
+        .card-gradient-bg {
+            background: linear-gradient(135deg, rgba(42, 10, 74, 0.25), rgba(10, 10, 106, 0.25)); /* Slightly stronger opacity */
+            backdrop-filter: blur(6px); /* More pronounced blur */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+        }
+
+        .input-field {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly more visible input background */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Slightly stronger border */
+            color: #E0E0E0;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #FFD700; /* Gold focus border */
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.4); /* Stronger gold glow on focus */
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly brighter on focus */
+        }
+        .submit-button {
+            background: linear-gradient(90deg, #FFD700, #FF4500); /* Gold to OrangeRed */
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .submit-button::before { /* Hover glow effect */
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease-out;
+            z-index: -1;
+        }
+        .submit-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .submit-button:hover {
+            transform: translateY(-3px) scale(1.03); /* More pronounced lift and scale */
+            background: linear-gradient(90deg, #FFA500, #DC143C); /* Orange to Crimson on hover */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, rgba(42, 10, 74, 0.6), rgba(10, 10, 106, 0.6)), url('https://placehold.co/0A0A2A/FFD700'); /* Placeholder galaxy image with specified dimensions and darker overlay */
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem;
+            border-radius: 1.5rem; /* More rounded corners */
+            margin-bottom: 2.5rem; /* Increased margin */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); /* Stronger shadow */
+            position: relative;
+            overflow: hidden;
+
+            /* Menambahkan Flexbox untuk centering konten */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Horizontally center children */
+            justify-content: center; /* Vertically center children */
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.15), transparent 75%); /* Stronger subtle central glow */
+            pointer-events: none;
+        }
+        .hero-section h2 {
+            color: #E0E0E0; /* Ensure text remains visible */
+            text-align: center; /* Pastikan teks tetap di tengah */
+        }
+        .hero-section img {
+            /* Gaya khusus untuk logo di hero section */
+            width: 100px; /* Lebar tetap untuk logo */
+            height: auto;
+            margin-bottom: 1.5rem; /* Spasi di bawah logo */
+            border-radius: 50%; /* Membuat logo bulat */
+            border: 3px solid #FFD700; /* Border emas */
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); /* Efek glow emas */
+        }
+        .icon-large {
+            font-size: 3.5rem; /* Slightly larger icon */
+            margin-bottom: 1.2rem; /* Adjusted margin */
+            color: #FFD700; /* Gold icon color */
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3); /* Stronger glow for icons */
+        }
+        /* Styling for dashboard images */
+        .dashboard-image-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Slightly larger min-width */
+            gap: 2rem; /* Increased gap */
+            margin-top: 2.5rem; /* Increased margin */
+            justify-items: center; /* Center images within their grid cells */
+        }
+        .dashboard-image-item {
+            background-color: rgba(255, 255, 255, 0.08); /* Slightly more visible background for images */
+            border-radius: 1rem; /* More rounded corners */
+            padding: 1.2rem; /* Increased padding */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+            text-align: center;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
+        }
+        .dashboard-image-item:hover {
+            transform: translateY(-8px) scale(1.04); /* More pronounced lift and scale */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); /* Much stronger shadow */
+            background-color: rgba(255, 255, 255, 0.15); /* Brighter on hover */
+        }
+        .dashboard-image-item img {
+            width: 100%;
+            height: auto;
+            max-width: 140px; /* Slightly larger max width for images */
+            margin: 0 auto 1rem auto; /* Adjusted margin */
+            border-radius: 0.75rem; /* More rounded corners */
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+        }
+        .dashboard-image-item p {
+            font-size: 1rem; /* Slightly larger font */
+            color: #E0E0E0; /* Consistent text color */
+            font-weight: 600; /* Bolder text */
+        }
+        /* Styling for Profil section */
+        .profil-section-content {
+            display: grid;
+            gap: 2.5rem; /* Increased gap */
+            grid-template-columns: 1fr; /* Default to single column */
+        }
+        @media (min-width: 768px) {
+            .profil-section-content {
+                grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
+            }
+        }
+        .inspector-profile-card, .sotk-chart-container, .employee-data-container,
+        .legal-basis-container, .kebijakan-program-container, .maps-container {
+            background: linear-gradient(135deg, rgba(74, 0, 138, 0.25), rgba(10, 10, 106, 0.25)); /* Slightly stronger opacity */
+            padding: 2rem; /* Increased padding */
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            text-align: center;
+            border: 1px solid rgba(140, 0, 255, 0.4); /* Stronger border */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .inspector-profile-card:hover, .sotk-chart-container:hover, .employee-data-container:hover,
+        .legal-basis-container:hover, .kebijakan-program-container:hover, .maps-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        }
+        /* Adjusted inspector photo size */
+        .inspector-photo {
+            width: 120px; /* Reduced width */
+            height: 120px; /* Reduced height */
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem auto; /* Adjusted margin */
+            border: 4px solid #FFD700; /* Thicker gold border */
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4); /* More prominent glowing effect */
+        }
+        .sotk-chart-container {
+            /* Existing styles */
+            background: linear-gradient(135deg, rgba(74, 0, 138, 0.25), rgba(10, 10, 106, 0.25));
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(140, 0, 255, 0.4);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+            /* Flexbox for centering content */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+        }
+        .sotk-chart-container img {
+            max-width: 100%; /* Ensure image scales within container */
+            height: auto;
+            max-height: 400px; /* Increased max-height to make it larger */
+            object-fit: contain; /* Ensure the entire image is visible */
+            border-radius: 0.75rem; /* More rounded corners */
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: block; /* Ensures image behaves as a block element for margin auto to work */
+            margin: 0 auto; /* Center the image horizontally */
+        }
+        .employee-list, .legal-list, .kebijakan-program-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem; /* Adjusted margin */
+            text-align: left; /* Align list items to the left */
+        }
+        .employee-list li, .legal-list li, .kebijakan-program-list li {
+            background-color: rgba(255, 255, 255, 0.08); /* Slightly more visible background */
+            padding: 1rem; /* Increased padding */
+            border-radius: 0.75rem; /* More rounded corners */
+            margin-bottom: 0.75rem; /* Increased margin */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Stronger border */
+            transition: background-color 0.3s ease-in-out;
+        }
+        .employee-list li:hover, .legal-list li:hover, .kebijakan-program-list li:hover {
+            background-color: rgba(255, 255, 255, 0.12); /* Subtle hover effect */
+        }
+        .employee-list li:last-child, .legal-list li:last-child, .kebijakan-program-list li:last-child {
+            margin-bottom: 0;
+        }
+        .employee-list .qualification {
+            font-weight: bold;
+            color: #FFD700; /* Gold for qualification */
+            font-size: 1.1rem; /* Slightly larger font */
+        }
+        .employee-list .count {
+            background-color: #6A00A0; /* Brighter deep purple for count badge */
+            padding: 0.3rem 0.9rem; /* Adjusted padding */
+            border-radius: 9999px; /* Pill shape */
+            font-size: 0.95rem; /* Slightly larger font */
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for badge */
+        }
+        .legal-list li strong, .kebijakan-program-list li strong {
+            color: #FFD700; /* Gold for bold text in legal basis and kebijakan/program */
+        }
+        .kebijakan-program-list ol {
+            margin-left: 1.8rem; /* Increased margin */
+            list-style-type: decimal;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .kebijakan-program-list ul {
+            margin-left: 1.8rem; /* Increased margin */
+            list-style-type: lower-alpha;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .kebijakan-program-list ol li, .kebijakan-program-list ul li {
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter background for nested list items */
+            padding: 0.6rem; /* Increased padding */
+            border-radius: 0.5rem; /* More rounded corners */
+            margin-bottom: 0.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Collapsible content styling */
+        .collapsible-item {
+            margin-bottom: 1rem; /* Add some space between collapsible items */
+        }
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(74, 0, 138, 0.4); /* Darker purple for header */
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.3s ease-in-out;
+            border: 1px solid rgba(140, 0, 255, 0.4);
+        }
+        .collapsible-header:hover {
+            background-color: rgba(106, 0, 160, 0.5); /* Slightly brighter on hover */
+        }
+        .collapsible-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out; /* Smooth slide effect */
+            padding: 0 1.5rem; /* Padding to match header */
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle background for content */
+            border-bottom-left-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .collapsible-content.open {
+            max-height: 2000px; /* Large enough value to accommodate content */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .collapsible-header.open .collapsible-icon {
+            transform: rotate(90deg); /* Rotate icon when open */
+        }
+        .maps-container iframe {
+            width: 100%;
+            height: 400px; /* Fixed height for the map */
+            border: 0;
+            border-radius: 0.75rem; /* More rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            /* Centering the map iframe */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Styling for Help Desk text color */
+        #helpdesk p {
+            color: #A0A0A0; /* Darker gray for paragraphs in helpdesk */
+        }
+        #helpdesk a {
+            color: #90B0FF; /* Lighter blue for links in helpdesk */
+        }
+        #helpdesk h3 {
+            color: #C0C0C0; /* Light gray for h3 in helpdesk */
+        }
+
+        /* NEW STYLES FOR LOGIN */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px); /* Adjust based on header/footer height */
+            padding: 2rem;
+        }
+        .login-card {
+            background: linear-gradient(135deg, rgba(42, 10, 74, 0.5), rgba(10, 10, 106, 0.5));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            max-width: 450px; /* Wider card */
+            width: 100%;
+            text-align: center;
+        }
+        .login-title {
+            font-size: 2.25rem; /* Larger title */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #FFD700, #FF4500);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-gray-900 bg-opacity-70 text-white p-4 shadow-lg relative z-10">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold text-center md:text-left mb-2 md:mb-0">Layanan Tindak Lanjut Temuan Hasil Pemeriksaan BPK-RI Kabupaten Mamuju Tengah</h1>
+            <nav class="flex space-x-4" id="main-nav-links">
+                <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showMessage('Anda harus login terlebih dahulu!')">Dashboard</button>
+                <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showMessage('Anda harus login terlebih dahulu!')">Layanan</button>
+                <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showMessage('Anda harus login terlebih dahulu!')">Profil</button>
+                <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showMessage('Anda harus login terlebih dahulu!')">Help Desk</button>
+            </nav>
+        </div>
+    </header>
+
+    <div id="login-page" class="login-container flex-grow">
+        <div class="login-card">
+            <h2 class="login-title">Login ke Aplikasi</h2>
+            <div id="login-message" class="message-box mb-4"></div>
+            <form id="login-form" onsubmit="event.preventDefault(); window.handleLogin();">
+                <div class="mb-4">
+                    <label for="login-email" class="block text-left text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <input type="email" id="login-email" class="w-full input-field" placeholder="Masukkan email Anda" required autocomplete="username">
+                </div>
+                <div class="mb-6">
+                    <label for="login-password" class="block text-left text-sm font-medium text-gray-300 mb-1">Password</label>
+                    <input type="password" id="login-password" class="w-full input-field" placeholder="Masukkan password Anda" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="w-full submit-button">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <main id="main-content" class="flex-grow container mx-auto p-6 relative z-10 hidden">
+        <section id="dashboard" class="section-gradient-bg p-8 rounded-xl shadow-xl mb-8">
+            <div class="hero-section">
+                <img src="logo_mateng.png" alt="Logo Kabupaten Mamuju Tengah" onerror="this.onerror=null;this.src='https://placehold.co/100x100/0A0A2A/FFD700?text=LOGO';">
+                <h2 class="text-4xl font-extrabold text-white mb-4">Selamat Datang Pada Layanan Tindak Lanjut Temuan Hasil Pemeriksaan BPK-RI Kabupaten Mamuju Tengah</h2>
+            </div>
+
+            <div class="mt-10 text-center">
+                <h3 class="text-2xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600">Fitur Layanan Kami</h3>
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                    <div class="card-gradient-bg p-5 rounded-lg shadow-md border border-purple-400 flex-1 feature-card">
+                        <i class="fas fa-balance-scale icon-large text-purple-400"></i>
+                        <h4 class="text-xl font-semibold text-white">Tindak Lanjut Temuan BPK-RI</h4>
+                        <p class="text-sm text-gray-300 mt-2">Melayani pengisian data tindak lanjut atas temuan hasil pemeriksaan BPK-RI.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center">
+                <h3 class="text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-600">Komitmen Kami</h3>
+                <div class="dashboard-image-container">
+                    <div class="dashboard-image-item">
+                        <img src="logo_berakhlak.png" alt="BerAKHLAK" onerror="this.onerror=null;this.src='https://placehold.co/120x120/0A0A6A/FFFFFF?text=BerAKHLAK';">
+                        <p>BerAKHLAK</p>
+                    </div>
+                    <div class="dashboard-image-item">
+                        <img src="logo_netralitasasn.png" alt="Netralitas ASN" onerror="this.onerror=null;this.src='https://placehold.co/120x120/0A0A6A/FFFFFF?text=Netralitas+ASN';">
+                        <p>Netralitas ASN</p>
+                    </div>
+                    <div class="dashboard-image-item">
+                        <img src="logo_stoppungli.png" alt="Stop Pungli" onerror="this.onerror=null;this.src='https://placehold.co/120x120/0A0A6A/FFFFFF?text=Stop+Pungli';">
+                        <p>Stop Pungli</p>
+                    </div>
+                    <div class="dashboard-image-item">
+                        <img src="logo_antikorupsi.png" alt="Anti Korupsi" onerror="this.onerror=null;this.src='https://placehold.co/120x120/0A0A6A/FFFFFF?text=Anti+Korupsi';">
+                        <p>Anti Korupsi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="layanan" class="hidden section-gradient-bg p-8 rounded-xl shadow-xl mb-8">
+            <h2 class="text-3xl font-semibold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600">Layanan Tindak Lanjut</h2>
+
+            <div id="form-bpkri" class="form-section card-gradient-bg p-6 rounded-lg shadow-md border border-purple-500 mt-6">
+                <h3 class="text-2xl font-semibold mb-4 text-purple-300">Form Tindak Lanjut Temuan BPK-RI</h3>
+                <form onsubmit="event.preventDefault(); window.submitForm('BPK-RI');">
+                    <div class="mb-4">
+                        <label for="bpk-ri-nama" class="block text-sm font-medium text-gray-300 mb-1">Nama Penyetor</label>
+                        <input type="text" id="bpk-ri-nama" class="w-full input-field" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="bpk-ri-opd" class="block text-sm font-medium text-gray-300 mb-1">OPD</label>
+                        <input type="text" id="bpk-ri-opd" class="w-full input-field" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="bpk-ri-waktu" class="block text-sm font-medium text-gray-300 mb-1">Waktu</label>
+                        <input type="datetime-local" id="bpk-ri-waktu" class="w-full input-field" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="bpk-ri-judul" class="block text-sm font-medium text-gray-300 mb-1">Judul Temuan</label>
+                        <input type="text" id="bpk-ri-judul" class="w-full input-field" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="bpk-ri-besaran-pengembalian" class="block text-sm font-medium text-gray-300 mb-1">Besaran Pengembalian (Rp.)</label>
+                        <input type="number" id="bpk-ri-besaran-pengembalian" class="w-full input-field" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="bpk-ri-bukti-dukung" class="block text-sm font-medium text-gray-300 mb-1">Bukti Dukung (URL Gambar)</label>
+                        <input type="text" id="bpk-ri-bukti-dukung" class="w-full input-field" placeholder="Tempelkan URL gambar Anda di sini" required>
+                    </div>
+                    <button type="submit" class="w-full submit-button">
+                        <i class="fas fa-paper-plane mr-2"></i> Kirim Tindak Lanjut BPK-RI
+                    </button>
+                </form>
+                <div id="bpk-ri-message" class="message-box"></div>
+            </div>
+        </section>
+
+        <section id="profil" class="hidden section-gradient-bg p-8 rounded-xl shadow-xl mb-8">
+            <h2 class="text-3xl font-semibold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">Profil Inspektorat Kabupaten Mamuju Tengah</h2>
+
+            <div class="profil-section-content">
+                <div class="inspector-profile-card">
+                    <img src="fotoinspektur.png" alt="Foto Inspektur" class="inspector-photo" onerror="this.onerror=null;this.src='https://placehold.co/120x120/4A008A/FFFFFF?text=Foto+Inspektur';">
+                    <h3 class="text-xl font-semibold mb-2 text-purple-300">Inspektur</h3>
+                    <p class="mb-2"><span class="font-bold text-white">Nama:</span> Dr. Sakaria K, S.Ag., M.Pd., MM.,CGCAE.,CIPA.,CGRS</p>
+                    <p class="mb-2"><span class="font-bold text-white">Visi:</span> Terwujudnya Manajemen Pemerintahan Yang Baik Melalui Pengawasan Yang Profesional</p>
+                    <p><span class="font-bold text-white">Misi:</span>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Meningkatkan pengawasan internal secara berkala;</li>
+                            <li>Meningkatkan kualitas profesionalisme aparatur pengawasan;</li>
+                            <li>Meningkatkan sarana dan prasarana pengawasan.</li>
+                        </ul>
+                    </p>
+                </div>
+
+                <div class="sotk-chart-container">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-300">Struktur Organisasi dan Tata Kerja (SOTK)</h3>
+                    <img src="SOTK.png" alt="Bagan SOTK Inspektorat" onerror="this.onerror=null;this.src='https://placehold.co/400x300/0A0A6A/FFFFFF?text=Bagan+SOTK';">
+                </div>
+
+                <div class="employee-data-container">
+                    <h3 class="text-xl font-semibold mb-2 text-green-300">Jumlah Pegawai Berdasarkan Kualifikasi Jabatan</h3>
+                    <ul class="employee-list">
+                        <li>
+                            <span class="qualification">Struktural</span>
+                            <span class="count">7</span> </li>
+                        <li>
+                            <span class="qualification">Fungsional</span>
+                            <span class="count">36</span> </li>
+                        <li>
+                            <span class="qualification">Pelaksana</span>
+                            <span class="count">5</span> </li>
+                    </ul>
+                    <p class="text-sm text-gray-400 mt-4">Data ini akan diperbarui sesuai informasi terbaru.</p>
+                </div>
+
+                <div class="maps-container">
+                    <h3 class="text-xl font-semibold mb-2 text-yellow-300">Lokasi Inspektorat Kabupaten Mamuju Tengah</h3>
+                    <!-- START: Google Maps Embed Code -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.234034395124!2d119.28335797350618!3d-2.062314036963632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d8d7b991fa30d77%3A0x91393dc807c31a1f!2sPemerintah%20Kabupaten%20Mamuju%20Tengah%20Inspektorat!5e0!3m2!1sen!2sid!4v1750902585888!5m2!1sen!2sid" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Lokasi Inspektorat Kabupaten Mamuju Tengah">
+                    </iframe>
+                    <!-- END: Google Maps Embed Code -->
+                </div>
+
+                <div class="legal-basis-container col-span-full">
+                    <h3 class="text-xl font-semibold mb-2 text-yellow-300">Dasar Hukum Inspektorat Kabupaten Mamuju Tengah</h3>
+                    <ul class="legal-list">
+                        <li><strong>Undang-Undang Nomor 23 Tahun 2014</strong> tentang Pemerintahan Daerah.</li>
+                        <li><strong>Peraturan Pemerintah Nomor 12 Tahun 2017</strong> tentang Pembinaan dan Pengawasan Penyelenggaraan Pemerintahan Daerah.</li>
+                        <li><strong>Peraturan Bupati Mamuju Tengah Nomor 20 Tahun 2024</strong> tentang Kedudukan, Susunan Organisasi, Tugas Dan Fungsi, Serta Tata Kerja Perangkat Daerah Kabupaten Mamuju Tengah.</li>
+                    </ul>
+                    <p class="text-sm text-gray-400 mt-4">Silakan perbarui daftar ini dengan dasar hukum yang relevan.</p>
+                </div>
+
+                <div class="kebijakan-program-container col-span-full">
+                    <h3 class="text-xl font-semibold mb-2 text-red-300">Kebijakan dan Program Inspektorat Kabupaten Mamuju Tengah</h3>
+                    <div class="kebijakan-program-list text-left">
+                        <div class="collapsible-item">
+                            <div class="collapsible-header" onclick="window.toggleCollapsible(this)">
+                                <p class="font-bold text-white">a. Kebijakan</p>
+                                <i class="fas fa-chevron-right collapsible-icon text-white"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p class="mb-2">Kebijakan Perangkat Daerah dalam mendukung Visi dan Misi Kepala Daerah menjadi Prioritas daerah yang dilaksanakan oleh Inspektorat Kabupaten yang dijabarkan dalam program dan kegiatan. Adapun langkah yang perlu dilaksanakan untuk mencapai target visi dan misi Kepala Daerah, Inspektorat Kabupaten Mamuju Tengah menentukan beberapa target yang menjadi prioritas dalam tugas Inspektorat yaitu:</p>
+                                <ol class="list-decimal list-inside ml-4 mb-4">
+                                    <li>Inspektorat membantu tugas Kepala Daerah dalam membina dan mengawasi pelaksanaan Urusan Pemerintahan yang menjadi kewenangan Daerah dan Tugas Pembantuan oleh Perangkat Daerah. Melakukan pengawasan terhadap pelaksanaan urusan pemerintah di daerah, pembinaan atas penyelenggaraan pemerintahan desa dan urusan pemerintahan desa.</li>
+                                    <li>Inspektorat dalam melaksanakan tugas, menyelenggarakan fungsi:
+                                        <ul class="list-lower-alpha list-inside ml-4 mt-2">
+                                            <li>Perumusan kebijakan teknis bidang pengawasan dan fasilitasi pengawasan;</li>
+                                            <li>Pelaksanaan pengawasan internal terhadap kinerja dan keuangan melalui audit, reviu, evaluasi, pemantauan dan kegiatan pengawasan lainnya;</li>
+                                            <li>Pelaksanaan pengawasan untuk tujuan tertentu atas penugasan dari kepala daerah;</li>
+                                            <li>Penyusunan laporan hasil pengawasan;</li>
+                                            <li>Pelaksanaan administrasi inspektorat daerah;</li>
+                                            <li>Pelaksanaan koordinasi Pencegahan Tindak Pidana Korupsi;</li>
+                                            <li>Pengawasan pelaksanaan program reformasi birokrasi;</li>
+                                            <li>Mengoordinasikan pelaksanaan dan monitoring tugas-tugas pengawasan urusan pemerintah di daerah, pelaksanaan pembinaan atas penyelenggaraan pemerintah desa dan pelaksanaan urusan pemerintahan desa;</li>
+                                            <li>Merumuskan hasil pengawasan urusan pemerintah di daerah, pelaksanaan pembinaan atas penyelenggaraan pemerintahan desa dan pelaksanaan urusan pemerintahan desa;</li>
+                                            <li>Memberikan saran pertimbangan dan dan rekomendasi kepada Bupati dalam menindaklanjuti perumusan hasil pengawasan urusan pemerintah di daerah, pelaksanaan pembinaan atas penyelenggaraan pemerintahan desa dan pelaksanaan urusan pemerintahan desa;</li>
+                                            <li>Melakukan koordinasi dan Kerjasama dengan insansi dan/atau Lembaga terkait lainnya untuk kelancaran pelaksanaan kegiatan inspektorat; dan</li>
+                                            <li>Pelaksanaan fungsi lain yang diberikan oleh kepala daerah terkait dengan tugas dan fungsinya.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="collapsible-item mt-4">
+                            <div class="collapsible-header" onclick="window.toggleCollapsible(this)">
+                                <p class="font-bold text-white">b. Program dan Kegiatan</p>
+                                <i class="fas fa-chevron-right collapsible-icon text-white"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p class="mb-2">Program dan Kegiatan yang susun dalam memenuhi target kinerja Perangkat Daerah dapat diuraikan sebagai berikut:</p>
+                                <ol class="list-decimal list-inside ml-4 mb-4">
+                                    <li>Program:
+                                        <ul class="list-lower-alpha list-inside ml-4 mt-2">
+                                            <li>Program Penunjang Urusan Pemerintah Daerah Kabupaten/ Kota;</li>
+                                            <li>Program Penyelenggaraan Pengawasan;</li>
+                                            <li>Program Perumusan Kebijakan, Pendampingan dan Asistensi;</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <p class="mb-2">Berdasarkan program tersebut diatas, Inspektorat Kabupaten Mamuju Tengah dalam mencapai dan melaksanakan tugas pokok dan fungsi Perangkat Daerah melaksaakan kegiatan yang dapat diuraikan sebagai Berikut:</p>
+                                <ol class="list-decimal list-inside ml-4">
+                                    <li>Program Penunjang Urusan Pemerintah Daerah Kabupaten/ Kota;
+                                        <ul class="list-decimal list-inside ml-4 mt-2">
+                                            <li>Perencanaan, Penganggaran, dan Evaluasi Kinerja Perangkat Daerah;</li>
+                                            <li>Administrasi Keuangan Perangkat Daerah;</li>
+                                            <li>Administrasi Umum Perangkat Daerah;</li>
+                                            <li>Pengadaan Barang Milik Daerah Penunjang Urusan Pemerintah Daerah;</li>
+                                            <li>Penyediaan Jasa Penunjang Urusan Pemerintahan Daerah;</li>
+                                            <li>Pemeliharaan Barang Milik Daerah Penunjang Urusan Pemerintahan Daerah.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Program Penyelenggaraan Pengawasan:
+                                        <ul class="list-decimal list-inside ml-4 mt-2">
+                                            <li>Penyelenggaraan Pengawasan Internal;</li>
+                                            <li>Penyelenggaraan Pengawasan Dengan Tujuan Tertentu.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Program Perumusan Kebijakan, Pendampingan dan Asistensi;
+                                        <ul class="list-decimal list-inside ml-4 mt-2">
+                                            <li>Perumusan Kebijakan Teknis di Bidang Pengawasan dan Fasilitasi Pengawasan;</li>
+                                            <li>Pendampingan dan Asistensi.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="helpdesk" class="hidden section-gradient-bg p-8 rounded-xl shadow-xl mb-8">
+            <h2 class="text-3xl font-semibold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600">Help Desk</h2>
+
+            <div class="max-w-xl mx-auto">
+                <p class="text-lg text-center mb-6">Silakan berikan pesan Anda kepada admin melalui kolom di bawah ini. Kami akan segera menghubungi Anda.</p>
+
+                <form onsubmit="event.preventDefault(); window.submitMessage();">
+                    <div class="mb-4">
+                        <label for="message-input" class="block text-sm font-medium text-gray-300 mb-1">Pesan Anda</label>
+                        <textarea id="message-input" rows="6" class="w-full input-field" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full submit-button">
+                        <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
+                    </button>
+                </form>
+                <div id="helpdesk-message" class="message-box"></div>
+
+                <div class="mt-8 text-center card-gradient-bg p-6 rounded-lg shadow-md border border-yellow-500">
+                    <h3 class="text-xl font-semibold mb-2">Kontak Admin</h3>
+                    <p class="text-lg">Fahrul Rossy, S.Tr.I.P</p>
+                    <p class="text-xl font-bold text-white">085144397889</p>
+                    <p class="text-lg">Email: <a href="mailto:matengitkab@gmail.com">matengitkab@gmail.com</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 bg-opacity-70 text-gray-400 p-4 text-center mt-8 relative z-10">
+        <p>© 2024 Layanan Tindak Lanjut Temuan Hasil Pemeriksaan BPK-RI Kabupaten Mamuju Tengah. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"; // Import doc and setDoc
+
+        // Menggunakan variabel global Canvas jika tersedia, jika tidak, gunakan default
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "AIzaSyCwgd1BWN0_f25jAUP2C5PHcQ_y_ZK4sz4",
+            authDomain: "tlitkabmateng.firebaseapp.com",
+            projectId: "tlitkabmateng",
+            storageBucket: "tlitkabmateng.appspot.com",
+            messagingSenderId: "156099476530",
+            appId: "1:156099476530:web:d074996e973d28b5fa902b",
+            measurementId: "G-82BFEJ8GN2"
+        };
+
+        let app;
+        let auth;
+        let db;
+        let userId = null; // Deklarasi userId dan inisialisasi sebagai null
+        let isFirebaseReady = false; // Flag untuk menandai kesiapan Firebase
+
+        // Mendapatkan referensi ke elemen-elemen DOM yang akan diubah
+        const mainContent = document.getElementById('main-content');
+        const loginPage = document.getElementById('login-page');
+        const navLinksContainer = document.getElementById('main-nav-links');
+        const loginMessageBox = document.getElementById('login-message'); // Untuk pesan error/sukses di form login
+
+        // Custom message box function (replacing alert())
+        window.showMessage = (message, type = 'info') => {
+            let messageBox;
+            // Determine which message box to use based on context or create a generic one
+            if (loginPage && !loginPage.classList.contains('hidden')) {
+                messageBox = loginMessageBox; // Use login message box if on login page
+            } else {
+                messageBox = document.getElementById('bpk-ri-message') || document.getElementById('helpdesk-message') || loginMessageBox;
+            }
+
+            if (messageBox) {
+                let colorClass = 'text-blue-400';
+                let iconClass = 'fas fa-info-circle';
+                if (type === 'error') {
+                    colorClass = 'text-red-400';
+                    iconClass = 'fas fa-exclamation-circle';
+                } else if (type === 'success') {
+                    colorClass = 'text-green-400';
+                    iconClass = 'fas fa-check-circle';
+                } else if (type === 'warning') {
+                    colorClass = 'text-yellow-400';
+                    iconClass = 'fas fa-exclamation-triangle';
+                } else if (type === 'loading') {
+                    colorClass = 'text-yellow-400';
+                    iconClass = 'fas fa-spinner fa-spin';
+                }
+
+                messageBox.innerHTML = `<p class="${colorClass}"><i class="${iconClass} mr-2"></i> ${message}</p>`;
+                messageBox.style.display = 'block';
+                // Automatically hide after some time for info/success/warning
+                if (type !== 'loading') {
+                    setTimeout(() => {
+                        messageBox.style.display = 'none';
+                    }, 5000);
+                }
+            } else {
+                console.warn("Message box element not found, logging message:", message);
+            }
+        };
+
+
+        // Fungsi inisialisasi Firebase
+        const initFirebase = async () => {
+            // Periksa apakah firebaseConfig telah diisi dengan nilai-nilai yang valid
+            if (!firebaseConfig.apiKey || !firebaseConfig.authDomain || !firebaseConfig.projectId || !firebaseConfig.appId) {
+                console.error("Firebase configuration is incomplete or invalid. Please provide all necessary keys from your Firebase Console.");
+                window.showMessage("Error: Konfigurasi Firebase TIDAK LENGKAP atau TIDAK VALID. Harap periksa konsol browser Anda untuk detailnya.", 'error');
+                
+                // Mengatur fungsi submit untuk menampilkan error jika Firebase tidak bisa diinisialisasi
+                window.submitForm = async function(type) {
+                    window.showMessage(`Error: Formulir tidak dapat dikirim. Konfigurasi Firebase belum benar.`, 'error');
+                };
+                window.submitMessage = async function() {
+                    window.showMessage(`Error: Pesan tidak dapat dikirim. Konfigurasi Firebase belum benar.`, 'error');
+                };
+                return; // Berhenti eksekusi jika konfigurasi tidak valid
+            }
+
+            try {
+                app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                isFirebaseReady = true;
+
+                // Listener untuk perubahan status autentikasi
+                onAuthStateChanged(auth, async (user) => { // Make this async to use await for setDoc
+                    if (user) {
+                        // User sudah login
+                        userId = user.uid;
+                        console.log("User signed in:", user.email, "UID:", userId);
+
+                        // Ambil bagian depan email untuk alias OPD
+                        const opdAlias = user.email ? user.email.split('@')[0] : 'unknown_opd';
+
+                        // Simpan atau perbarui dokumen user di koleksi 'users' dengan opdAlias
+                        // Ini akan membuat dokumen di 'users/UID_pengguna'
+                        try {
+                            await setDoc(doc(db, 'users', userId), {
+                                email: user.email,
+                                opdAlias: opdAlias,
+                                lastLogin: serverTimestamp()
+                            }, { merge: true }); // merge: true agar tidak menimpa data lain jika sudah ada
+                            console.log("User profile updated with OPD alias:", opdAlias);
+                        } catch (profileError) {
+                            console.error("Error updating user profile with OPD alias:", profileError);
+                            window.showMessage(`Gagal menyimpan alias OPD: ${profileError.message}`, 'error');
+                        }
+
+                        displayContent(true); // Tampilkan konten utama
+                        updateNavLinks(true); // Perbarui navigasi (tampilkan tombol logout)
+                        window.showSection('dashboard'); // Arahkan ke dashboard setelah login
+                    } else {
+                        // User belum login atau logout
+                        userId = null;
+                        console.log("No user signed in.");
+                        displayContent(false); // Sembunyikan konten utama, tampilkan halaman login
+                        updateNavLinks(false); // Perbarui navigasi (sembunyikan menu, hanya ada login jika perlu)
+                        hideAllSections(); // Pastikan semua bagian utama tersembunyi
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error initializing Firebase or setting up auth state listener:", error);
+                window.showMessage(`Error inisialisasi Firebase: ${error.message}. Fungsi pengiriman data mungkin tidak bekerja.`, 'error');
+            }
+        };
+
+        // Fungsi untuk menampilkan/menyembunyikan konten utama vs halaman login
+        const displayContent = (loggedIn) => {
+            if (loggedIn) {
+                loginPage.classList.add('hidden'); // Sembunyikan halaman login
+                mainContent.classList.remove('hidden'); // Tampilkan konten utama
+            } else {
+                loginPage.classList.remove('hidden'); // Tampilkan halaman login
+                mainContent.classList.add('hidden'); // Sembunyikan konten utama
+            }
+        };
+
+        // Fungsi untuk memperbarui tautan navigasi di header
+        const updateNavLinks = (loggedIn) => {
+            navLinksContainer.innerHTML = ''; // Kosongkan tautan yang ada
+            if (loggedIn) {
+                // Tampilkan tautan menu lengkap + Logout
+                navLinksContainer.innerHTML = `
+                    <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showSection('dashboard')">Dashboard</button>
+                    <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showSection('layanan')">Layanan</button>
+                    <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showSection('profil')">Profil</button>
+                    <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showSection('helpdesk')">Help Desk</button>
+                    <button class="nav-link px-4 py-2 rounded-lg" onclick="window.handleLogout()"><i class="fas fa-sign-out-alt mr-2"></i> Logout</button>
+                `;
+            } else {
+                // Saat belum login, tidak ada tautan navigasi di header.
+                // Pengguna hanya akan melihat halaman login.
+                navLinksContainer.innerHTML = `
+                    <button class="nav-link px-4 py-2 rounded-lg" onclick="window.showMessage('Silakan login terlebih dahulu untuk mengakses menu!', 'info')"><i class="fas fa-info-circle mr-2"></i> Info</button>
+                `;
+            }
+        };
+
+        // Fungsi untuk menyembunyikan semua bagian konten utama (dipanggil saat logout)
+        const hideAllSections = () => {
+            const sections = ['dashboard', 'layanan', 'profil', 'helpdesk'];
+            sections.forEach(id => {
+                const sectionElement = document.getElementById(id);
+                if (sectionElement) {
+                    sectionElement.classList.add('hidden');
+                }
+            });
+            // Hapus kelas 'active' dari semua tombol navigasi
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+        };
+
+        // Fungsi Login
+        window.handleLogin = async () => {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (!email || !password) {
+                window.showMessage("Email dan password tidak boleh kosong!", 'error');
+                return;
+            }
+
+            window.showMessage("Memproses login...", 'loading');
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.showMessage("Login Berhasil!", 'success');
+                // onAuthStateChanged listener akan otomatis menangani tampilan setelah ini
+            } catch (error) {
+                let errorMessage = "Terjadi kesalahan saat login.";
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                    errorMessage = "Email atau password salah. Mohon periksa kembali.";
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = "Format email tidak valid.";
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorMessage = "Terlalu banyak percobaan login gagal. Akun Anda mungkin diblokir sementara. Coba lagi nanti.";
+                }
+                else {
+                    errorMessage = `Error: ${error.message}`; // Tangani error lain yang mungkin muncul
+                }
+                console.error("Login error:", error);
+                window.showMessage(`${errorMessage}`, 'error');
+            }
+        };
+
+        // Fungsi Logout
+        window.handleLogout = async () => {
+            try {
+                await signOut(auth);
+                window.showMessage("Anda telah logout.", 'success');
+            } catch (error) {
+                console.error("Logout error:", error);
+                window.showMessage(`Terjadi kesalahan saat logout: ${error.message}`, 'error');
+            }
+        };
+
+        // Fungsi helper untuk mendapatkan nilai input dengan aman
+        const getInputValue = (id) => {
+            const element = document.getElementById(id);
+            if (element) {
+                return element.value;
+            }
+            console.error(`Element with ID ${id} not found.`);
+            return null;
+        };
+
+        // Fungsi untuk menangani pengiriman formulir BPK-RI
+        window.submitForm = async function(type) {
+            // Pastikan Firebase sudah siap dan user sudah login sebelum mencoba mengirim data
+            if (!isFirebaseReady || !userId) {
+                window.showMessage(`Anda harus login untuk mengirim data.`, 'error');
+                return;
+            }
+
+            if (type !== 'BPK-RI') {
+                console.error("Error: Invalid form type submitted.");
+                return;
+            }
+
+            const nama = getInputValue(`${type.toLowerCase()}-nama`);
+            const opd = getInputValue(`${type.toLowerCase()}-opd`);
+            const waktu = getInputValue(`${type.toLowerCase()}-waktu`);
+            const judul = getInputValue(`${type.toLowerCase()}-judul`);
+            const besaranPengembalian = getInputValue(`${type.toLowerCase()}-besaran-pengembalian`);
+            const buktiDukungUrl = getInputValue(`${type.toLowerCase()}-bukti-dukung`);
+
+            // Tambahkan validasi dasar untuk input
+            if (!nama || !opd || !waktu || !judul || besaranPengembalian === null || besaranPengembalian.trim() === '' || !buktiDukungUrl || buktiDukungUrl.trim() === '') {
+                window.showMessage(`Mohon lengkapi semua bidang formulir.`, 'error');
+                return;
+            }
+
+            window.showMessage(`Mengirim data...\nCek konsol browser untuk error.`, 'loading');
+
+            try {
+                // Menambahkan data ke koleksi 'submissions_bppwi' yang berada di bawah dokumen pengguna
+                const userSubcollectionPath = `users/${userId}/submissions_bppwi`;
+                await addDoc(collection(db, userSubcollectionPath), {
+                    tipeTemuan: type,
+                    namaPenyetor: nama,
+                    opd: opd,
+                    waktu: waktu,
+                    judulTemuan: judul,
+                    besaranPengembalian: parseFloat(besaranPengembalian), // Pastikan ini disimpan sebagai angka
+                    buktiDukungUrl: buktiDukungUrl,
+                    timestamp: serverTimestamp(), // Menambahkan timestamp dari server Firestore
+                    submittedBy: userId, // Menyimpan UID pengguna yang mengirimkan data
+                    submittedByEmail: auth.currentUser.email // Menyimpan email pengguna yang mengirimkan data
+                });
+
+                window.showMessage(`Data Tindak Lanjut Temuan ${type} Berhasil Dikirim ke Firebase!`, 'success');
+                // Anda bisa menampilkan detail pengiriman di message box atau di area lain jika diinginkan
+                const messageBox = document.getElementById(`${type.toLowerCase()}-message`);
+                if (messageBox) {
+                    messageBox.innerHTML += `
+                        <p>Nama Penyetor: ${nama}</p>
+                        <p>OPD: ${opd}</p>
+                        <p>Waktu: ${waktu}</p>
+                        <p>Judul Temuan: ${judul}</p>
+                        <p>Besaran Pengembalian: Rp. ${besaranPengembalian}</p>
+                        <p>Bukti Dukung (URL): <a href="${buktiDukungUrl}" target="_blank" class="text-blue-400 hover:underline break-all">${buktiDukungUrl}</a></p>
+                    `;
+                    messageBox.style.display = 'block';
+                }
+
+                // Mengosongkan bidang formulir setelah berhasil
+                document.getElementById(`${type.toLowerCase()}-nama`).value = '';
+                document.getElementById(`${type.toLowerCase()}-opd`).value = '';
+                document.getElementById(`${type.toLowerCase()}-waktu`).value = '';
+                document.getElementById(`${type.toLowerCase()}-judul`).value = '';
+                document.getElementById(`${type.toLowerCase()}-besaran-pengembalian`).value = '';
+                document.getElementById(`${type.toLowerCase()}-bukti-dukung`).value = '';
+
+            } catch (e) {
+                console.error("Error sending data to Firebase: ", e);
+                let errorMessage = e.message || "Terjadi kesalahan yang tidak diketahui.";
+                if (errorMessage.includes("Missing or insufficient permissions") || e.code === 'permission-denied') {
+                    errorMessage = "Izin database tidak cukup. Ini hampir pasti berarti ada masalah dengan Firebase Security Rules Anda. Pastikan Anda sudah login dan Firebase Security Rules sudah benar (aturan 'write' harus 'request.auth != null' untuk jalur `users/{userId}/...`).";
+                } else if (errorMessage.includes("Firebase: Error (auth/")) {
+                    errorMessage = "Autentikasi Firebase bermasalah. Periksa API Key di firebaseConfig Anda atau pengaturan Authentication di konsol Firebase.";
+                }
+                window.showMessage(`Error: ${errorMessage}`, 'error');
+            }
+        };
+
+        // Fungsi untuk menangani pengiriman pesan Help Desk
+        window.submitMessage = async function() {
+            // Pastikan Firebase sudah siap dan user sudah login sebelum mencoba mengirim data
+            if (!isFirebaseReady || !userId) {
+                window.showMessage(`Anda harus login untuk mengirim pesan.`, 'error');
+                return;
+            }
+
+            const messageInput = getInputValue('message-input');
+            let messageText = messageInput;
+
+            if (messageText === null || messageText.trim() === '') {
+                window.showMessage(`Error: Pesan tidak boleh kosong.`, 'error');
+                return;
+            }
+
+            window.showMessage(`Mengirim pesan...\nCek konsol browser untuk error.`, 'loading');
+
+            try {
+                // Menambahkan data ke koleksi 'messages_helpdesk' yang berada di bawah dokumen pengguna
+                const userSubcollectionPath = `users/${userId}/messages_helpdesk`;
+                await addDoc(collection(db, userSubcollectionPath), {
+                    pesan: messageText,
+                    timestamp: serverTimestamp(), // Menambahkan timestamp dari server Firestore
+                    submittedBy: userId, // Menyimpan UID pengguna yang mengirimkan data
+                    submittedByEmail: auth.currentUser.email // Menyimpan email pengguna yang mengirimkan data
+                });
+
+                window.showMessage(`Pesan Anda berhasil dikirim ke Firebase!`, 'success');
+                const messageBox = document.getElementById('helpdesk-message');
+                if (messageBox) {
+                    messageBox.innerHTML += `
+                        <p>Isi Pesan: "${messageText}"</p>
+                        <p>Admin akan segera menghubungi Anda.</p>
+                    `;
+                    messageBox.style.display = 'block';
+                }
+
+                document.getElementById('message-input').value = '';
+            } catch (e) {
+                console.error("Error sending message to Firebase: ", e);
+                let errorMessage = e.message || "Terjadi kesalahan yang tidak diketahui.";
+                if (errorMessage.includes("Missing or insufficient permissions") || e.code === 'permission-denied') {
+                    errorMessage = "Izin database tidak cukup. Ini hampir pasti berarti ada masalah dengan Firebase Security Rules Anda. Pastikan Anda sudah login dan Firebase Security Rules sudah benar (aturan 'write' harus 'request.auth != null' untuk jalur `users/{userId}/...`).";
+                } else if (errorMessage.includes("Firebase: Error (auth/")) {
+                    errorMessage = "Autentikasi Firebase bermasalah. Periksa API Key di firebaseConfig Anda atau pengaturan Authentication di konsol Firebase.";
+                }
+                window.showMessage(`Error: ${errorMessage}`, 'error');
+            }
+        };
+
+        // Fungsi untuk menampilkan/menyembunyikan bagian halaman
+        window.showSection = function(sectionId) {
+            // Pastikan user sudah login sebelum bisa berganti section
+            if (!userId) {
+                window.showMessage(`Anda harus login untuk mengakses fitur ini.`, 'error');
+                displayContent(false); // Pastikan halaman login yang tampil
+                return;
+            }
+
+            const sections = ['dashboard', 'layanan', 'profil', 'helpdesk'];
+            sections.forEach(id => {
+                const sectionElement = document.getElementById(id);
+                if (sectionElement) {
+                    sectionElement.classList.add('hidden');
+                }
+            });
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            // Pastikan link navigasi Logout tidak diberi kelas 'active'
+            const activeNavLink = document.querySelector(`.nav-link[onclick*="showSection('${sectionId}')"]`); // Use * for contains
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
+
+            // Jika bagian 'layanan' ditampilkan, segera tampilkan formulir BPK-RI
+            if (sectionId === 'layanan') {
+                window.showForm('bpkri');
+            }
+        }
+
+        let formBpkriElement; // Deklarasi di scope global script
+
+        // Fungsi untuk menampilkan/menyembunyikan formulir di dalam bagian 'layanan'
+        window.showForm = function(formType) {
+            // Sembunyikan semua form di dalam bagian layanan jika ada lebih dari satu di masa depan
+            if (formBpkriElement) {
+                formBpkriElement.style.display = 'none';
+            }
+
+            let targetForm;
+            if (formType === 'bpkri') {
+                targetForm = formBpkriElement;
+            }
+
+            if (targetForm) {
+                targetForm.style.display = 'block';
+            } else {
+                console.error(`Target form with ID form-${formType} is null.`);
+            }
+        }
+
+        // Fungsi untuk mengaktifkan/menonaktifkan konten yang dapat dilipat (collapsible)
+        window.toggleCollapsible = function(headerElement) {
+            const content = headerElement.nextElementSibling;
+            headerElement.classList.toggle('open');
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.classList.remove('open');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('open');
+            }
+        }
+
+        // Jalankan setelah DOM sepenuhnya dimuat
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Inisialisasi elemen formulir secara global setelah DOM siap
+            formBpkriElement = document.getElementById('form-bpkri');
+
+            if (!formBpkriElement) {
+                console.error("Error: Element with ID 'form-bpkri' not found on DOMContentLoaded. Please check your HTML structure.");
+            }
+
+            // Inisialisasi Firebase
+            await initFirebase();
+
+            // onAuthStateChanged listener akan otomatis menangani tampilan awal
+            // dan tidak perlu memanggil showSection('dashboard') di sini.
+        });
+    </script>
+</body>
+</html>
